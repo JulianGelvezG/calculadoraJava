@@ -1,120 +1,43 @@
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
-import javax.swing.JButton;
-import java.awt.GridLayout;
-import java.awt.BorderLayout;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
+Descripción del Proyecto: Desarrollo de una Calculadora en Java utilizando Swing
+Objetivo:
+El objetivo de este proyecto es desarrollar una calculadora funcional en Java que permita realizar operaciones matemáticas básicas, tales como suma, resta, multiplicación y división. Para ello, se utilizará la librería Swing de Java, que facilita la creación de interfaces gráficas de usuario (GUI). Este ejercicio tiene como finalidad evaluar la comprensión y las habilidades en el diseño de interfaces gráficas y la implementación de lógica de programación.
 
-public class Main extends JFrame implements ActionListener {
+Requisitos Técnicos:
+Lenguaje de Programación: Java
+Biblioteca Gráfica: Swing
+Funcionalidades Esperadas:
+Pantalla de Visualización:
+Una pantalla que muestre los números ingresados y los resultados de las operaciones.
+Botones Numéricos:
+Botones del 0 al 9 para ingresar los números.
+Botones de Operación:
+Botones para las operaciones básicas: suma (+), resta (-), multiplicación (*) y división (/).
+Botón de Igualdad:
+Un botón "=" para calcular y mostrar el resultado de la operación.
+Botón de Limpieza:
+Un botón "C" para limpiar la pantalla y reiniciar la calculadora.
+Consideraciones Adicionales:
+Manejo de Excepciones:
+Implementar un manejo adecuado de excepciones para situaciones como la división por cero, mostrando un mensaje de error apropiado sin interrumpir el funcionamiento de la calculadora.
+Validación de Entrada:
+Asegurar que solo se ingresen números válidos, previniendo cualquier entrada no numérica que pueda causar errores durante las operaciones.
+Descripción Detallada:
+Este proyecto consiste en el desarrollo de una calculadora básica con las siguientes características:
 
-    private static final long serialVersionUID = 1L;
+Interfaz Gráfica (GUI):
 
-    private JPanel panel;
-    private JTextField pantalla;
+Utilizando Swing, se diseñará una interfaz gráfica amigable y fácil de usar. La calculadora tendrá una pantalla de visualización en la parte superior para mostrar los números ingresados y los resultados.
+Debajo de la pantalla, se colocarán los botones numéricos (0-9) y los botones de operación (+, -, *, /), junto con el botón "=" para calcular los resultados y el botón "C" para limpiar la pantalla.
+Lógica de Operaciones:
 
-    // Variables para guardar los números y operaciones
-    private double numero1, numero2, resultado;
-    private int operacion;
+La calculadora debe manejar las cuatro operaciones matemáticas básicas. Cada operación se activará al presionar su correspondiente botón después de ingresar los números.
+El botón "=" calculará y mostrará el resultado de la operación actual.
+Se implementará la lógica necesaria para manejar la precedencia de operaciones y la actualización correcta de la pantalla de visualización.
+Manejo de Excepciones:
 
-    public Main() {
-        setTitle("Calculadora");
-        setSize(300, 400);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setLocationRelativeTo(null);
+La aplicación debe ser capaz de manejar errores como la división por cero. En estos casos, se debe mostrar un mensaje de error en la pantalla de visualización sin detener la ejecución de la calculadora.
+Validación de Entrada:
 
-        panel = new JPanel();
-        panel.setLayout(new BorderLayout());
-
-        pantalla = new JTextField();
-        pantalla.setHorizontalAlignment(JTextField.RIGHT);
-        pantalla.setEditable(false);
-        panel.add(pantalla, BorderLayout.NORTH);
-
-        JPanel panelBotones = new JPanel();
-        panelBotones.setLayout(new GridLayout(5, 4, 5, 5));
-
-        String[] botonesTexto = {
-                "7", "8", "9", "/",
-                "4", "5", "6", "*",
-                "1", "2", "3", "-",
-                "0", ".", "=", "+",
-                "C"
-        };
-
-        JButton[] botones = new JButton[botonesTexto.length];
-
-        for (int i = 0; i < botonesTexto.length; i++) {
-            botones[i] = new JButton(botonesTexto[i]);
-            botones[i].addActionListener(this);
-            panelBotones.add(botones[i]);
-        }
-
-        panel.add(panelBotones, BorderLayout.CENTER);
-
-        add(panel);
-
-        setVisible(true);
-    }
-
-    public void actionPerformed(ActionEvent e) {
-        String comando = e.getActionCommand();
-
-        switch (comando) {
-            case "0": case "1": case "2": case "3": case "4":
-            case "5": case "6": case "7": case "8": case "9":
-            case ".":
-                pantalla.setText(pantalla.getText() + comando);
-                break;
-            case "+":
-                numero1 = Double.parseDouble(pantalla.getText());
-                operacion = 1; // Suma
-                pantalla.setText("");
-                break;
-            case "-":
-                numero1 = Double.parseDouble(pantalla.getText());
-                operacion = 2; // Resta
-                pantalla.setText("");
-                break;
-            case "*":
-                numero1 = Double.parseDouble(pantalla.getText());
-                operacion = 3; // Multiplicación
-                pantalla.setText("");
-                break;
-            case "/":
-                numero1 = Double.parseDouble(pantalla.getText());
-                operacion = 4; // División
-                pantalla.setText("");
-                break;
-            case "=":
-                numero2 = Double.parseDouble(pantalla.getText());
-                switch (operacion) {
-                    case 1:
-                        resultado = numero1 + numero2;
-                        break;
-                    case 2:
-                        resultado = numero1 - numero2;
-                        break;
-                    case 3:
-                        resultado = numero1 * numero2;
-                        break;
-                    case 4:
-                        if (numero2 != 0)
-                            resultado = numero1 / numero2;
-                        else
-                            pantalla.setText("Error");
-                        break;
-                }
-                pantalla.setText(String.valueOf(resultado));
-                break;
-            case "C":
-                pantalla.setText("");
-                break;
-        }
-    }
-
-    public static void main(String[] args) {
-        new Main();
-    }
-}
+La interfaz debe asegurar que solo se puedan ingresar números válidos y operaciones matemáticas permitidas. Cualquier entrada no válida debe ser ignorada o mostrar un mensaje de error.
+Conclusión:
+Este proyecto de desarrollo de una calculadora en Java utilizando Swing es una excelente oportunidad para practicar y demostrar habilidades en el diseño de interfaces gráficas y la implementación de lógica de programación. Al completar este proyecto, se habrá desarrollado una comprensión más profunda de cómo crear aplicaciones Java con interfaces gráficas y cómo manejar la lógica de operaciones matemáticas de manera eficiente y robusta.
